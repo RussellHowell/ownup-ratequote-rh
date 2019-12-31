@@ -2,6 +2,23 @@
 
 exports[`renders correctly 1`] = `
 <div>
-  TODO
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Name
+           
+        </th>
+        <th>
+          Age
+           
+        </th>
+        <th>
+          Height
+           
+        </th>
+      </tr>
+    </thead>
+  </table>
 </div>
 `;

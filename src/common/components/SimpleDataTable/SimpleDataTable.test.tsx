@@ -1,6 +1,7 @@
 import * as React from 'react';
 import TestRenderer from 'react-test-renderer';
 import SimpleDataTable from './SimpleDataTable';
+import { shallow, ShallowWrapper } from 'enzyme';
 
 
 const testColumns: Array<{ header: string, path: Array<string> | string }> = [
@@ -27,6 +28,7 @@ const testRowData: Array<{
      }
  ]
 
+ //snapshot test
  it('renders correctly', () => {
     const tree = TestRenderer.create(
     <SimpleDataTable
@@ -36,4 +38,23 @@ const testRowData: Array<{
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
- 
+
+//render table 
+const tableContainer: ShallowWrapper = shallow( 
+    <SimpleDataTable
+        columns={ testColumns }
+        rowData={ testRowData }
+    />
+);
+
+const table: ShallowWrapper = tableContainer.find( 'table' );
+//only one table should be rendered 
+expect( table ).toHaveLength( 1 );
+
+const thead: ShallowWrapper = table.find( 'thead' );
+//table should have one thead
+expect( thead ).toHaveLength( 1 ); 
+
+const thArr: ShallowWrapper = table.find( 'th' );
+//number of <th> tags should match number of test columns
+expect( thArr ).toHaveLength( testColumns.length ); 
