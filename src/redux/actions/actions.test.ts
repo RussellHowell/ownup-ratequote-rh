@@ -1,4 +1,4 @@
-import { onRateQuoteRequest, EActionTypes, onRateQuoteRequestSuccess } from './actions';
+import { onRateQuoteRequest, EActionTypes, onRateQuoteRequestSuccess, onRateQuoteRequestFailure } from './actions';
 import { EPropertyType, EOccupancyType } from '../../common/enum/index';
 import { IRateQuoteServiceQuery, IRateQuoteServiceResponse } from '../../rate-quote/interface/index';
 import { IReduxAction } from '../../common/interface/index';
@@ -62,3 +62,14 @@ it( 'onRateQuoteRequestSuccess returns correctly formatted action', () => {
         content: testResponse
     } );
 } )
+
+it( 'onRateQuoteRequestFailure returns a properly formatted action', () => {
+    const testErrors: Array<string> = [ 'err1', 'err2' ];
+    expect( onRateQuoteRequestFailure( { id: 'test', errorMessages: testErrors } ) ).toMatchObject({
+        action: EActionTypes.RATE_QUOTE_REQUEST_FAILURE,
+        payload: {
+            id: 'test',
+            content: testErrors
+        }
+    });
+} );

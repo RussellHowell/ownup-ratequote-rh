@@ -49,3 +49,16 @@ export const onRateQuoteRequestSuccess = ( result: {id: string, content: IRateQu
             payload: result
         }
 } 
+
+/** Action creator that should be utilized when any number of errors requesting rate quotes occurs */
+export const onRateQuoteRequestFailure = ( result: {id: string, errorMessages: Array<string>}): 
+    IReduxAction<EActionTypes,{id: string, content: Array<string>}> => {
+        return { 
+            action: EActionTypes.RATE_QUOTE_REQUEST_FAILURE,
+            payload: {
+                id: result.id,
+                content: result.errorMessages
+            }
+        }
+    }
+
