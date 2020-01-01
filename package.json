@@ -12,6 +12,7 @@
     "shortid": "^2.2.15"
   },
   "devDependencies": {
+    "@types/shortid": "^0.0.29",
     "@types/enzyme": "^3.10.4",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^24.0.23",
