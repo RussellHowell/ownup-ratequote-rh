@@ -40,3 +40,12 @@ export const onRateQuoteRequest = ( query: IRateQuoteServiceQuery, payloadId?: s
             }
         }
 }
+
+/** Action creator that should be utilized when a list of rate quotes is successfully retrieved from a service endpoint */
+export const onRateQuoteRequestSuccess = ( result: {id: string, content: IRateQuoteServiceResponse} ): 
+    IReduxAction<EActionTypes, {id: string, content: IRateQuoteServiceResponse}> => {
+        return {
+            action: EActionTypes.RATE_QUOTE_REQUEST_SUCCESS,
+            payload: result
+        }
+} 
