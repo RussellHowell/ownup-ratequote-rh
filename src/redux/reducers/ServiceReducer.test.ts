@@ -1,7 +1,7 @@
 import { IRateQuote, IRateQuoteServiceQuery } from '../../rate-quote';
 import { EPropertyType, EOccupancyType, EServiceRequestProgress } from '../../common';
 import { IServiceReducer, serviceReducer } from './ServiceReducer';
-import { EActionTypes, onServiceErrorAcknowledge, onRateQuoteRequestSuccess } from '../actions/actions';
+import { EActionTypes, onServiceErrorAcknowledge, onRateQuoteRequestSuccess, onRateQuoteRequestFailure } from '../actions/actions';
 import { IServiceRequestMetaData } from '../../common/interface/index';
 
 const initState: IServiceReducer = {
@@ -112,7 +112,7 @@ it( `correctly updates status of corresponding request after ${EActionTypes.RATE
 } )
 
 it( `correctly updates status of corresponding request after ${EActionTypes.RATE_QUOTE_REQUEST_FAILURE} action`, () => {
-    const newState: IServiceReducer = serviceReducer( populatedState, onRateQuoteRequestSuccess( {
+    const newState: IServiceReducer = serviceReducer( populatedState, onRateQuoteRequestFailure( {
         id: '1',
         content: { rateQuotes: testRateQuoteArray } 
     } ));
