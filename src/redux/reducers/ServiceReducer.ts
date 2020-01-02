@@ -1,4 +1,4 @@
-import { IServiceRequestMetaData, IReduxAction } from "../../common";
+import { IServiceRequestMetaData, IReduxAction, EServiceRequestProgress } from "../../common";
 import { IRateQuoteServiceQuery, IRateQuoteServiceResponse } from '../../rate-quote';
 import { EActionTypes } from '../actions/actions';
 
@@ -13,7 +13,7 @@ interface IAppServiceMetadata extends IServiceRequestMetaData<
 > {} 
 
 /* helper interface: collates all possible action types & action content */
-interface IServiceReducerAction extends IReduxAction<EActionTypes, { id: string, content: IRateQuoteServiceQuery | IRateQuoteServiceResponse }> {}
+interface IServiceReducerAction extends IReduxAction<EActionTypes, { id: string, content: IRateQuoteServiceQuery & IRateQuoteServiceResponse } & string> {}
 
 
 
@@ -27,6 +27,53 @@ const initialState: IServiceReducer = {
 
 export const serviceReducer = ( state: IServiceReducer = initialState, action: IServiceReducerAction ): IServiceReducer => {
     switch ( action.type ) {
+        /** @note add additional service reqeust action types to this case to support them  */
+        case EActionTypes.RATE_QUOTE_REQUEST:  
+            return {
+                ...state,
+                requests: [
+                    ...state.requests,
+                    {
+                        id: action.payload.id,
+                        queryData: action.payload.content,
+                        requestType: action.type,
+                        requestProgress: EServiceRequestProgress.IN_PROGRESS,
+                        errors: [],
+                        errorsAcknowledged: false,
+                    }
+                ]
+            }
+        case EActionTypes.RATE_QUOTE_REQUEST_SUCCESS: 
+            return {
+                ...state,
+                requests: state.requests.map( requestData => {
+                    return {
+                        ...requestData,
+                        requestProgress: action.payload.id.toString() === requestData.id.toString()  ? EServiceRequestProgress.SUCCESSFUL : requestData.requestProgress
+                    }
+                })
+            }
+        /** @todo add failure errors  */
+        case EActionTypes.RATE_QUOTE_REQUEST_FAILURE: 
+            return {
+                ...state,
+                requests: state.requests.map( requestData => {
+                    return {
+                        ...requestData,
+                        requestProgress: action.payload.id.toString() === requestData.id.toString()  ? EServiceRequestProgress.FAILURE : requestData.requestProgress
+                    }
+                })
+            }
+        case EActionTypes.SERVICE_ERROR_ACKNOWLEDGE: 
+            return {
+                ...state,
+                requests: state.requests.map( requestData => {
+                    return {
+                        ...requestData,
+                        errorsAcknowledged: requestData.id.toString() === action.payload.toString() ? true : requestData.errorsAcknowledged
+                    }
+                })
+            }
         default: 
             return state;
     }
