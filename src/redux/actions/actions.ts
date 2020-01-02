@@ -12,13 +12,16 @@ import * as _ from 'lodash';
 const shortid = require( 'shortid' );
 
  export enum EActionTypes {
+    
      RATE_QUOTE_REQUEST = "RATE_QUOTE_REQUEST",
      RATE_QUOTE_REQUEST_SUCCESS = "RATE_QUOTE_REQUEST_SUCCESS",
      RATE_QUOTE_REQUEST_FAILURE = "RATE_QUOTE_REQUEST_FAILURE",
      RATE_QUOTE_RESULTS_UPDATE_ALL = "RATE_QUOTE_RESULTS_UPDATE_ALL",
      RATE_QUOTE_RESULTS_ADD_SINGLE = "RATE_QUOTE_RESULTS_ADD_SINGLE",
      RATE_QUOTE_RESULTS_UPDATE_SINGLE = "RATE_QUOTE_RESULTS_UPDATE_SINGLE",
-     RATE_QUOTE_RESULTS_REMOVE_SINGLE = "RATE_QUOTE_RESULTS_REMOVE_SINGLE"
+     RATE_QUOTE_RESULTS_REMOVE_SINGLE = "RATE_QUOTE_RESULTS_REMOVE_SINGLE",
+
+     SERVICE_ERROR_ACKNOWLEDGE = "SERVICE_ERROR_ACKNOWLEDGE"
 }
 
 /** 
@@ -62,3 +65,9 @@ export const onRateQuoteRequestFailure = ( result: {id: string, errorMessages: A
         }
     }
 
+export const onServiceErrorAcknowledge = ( requestId: string ): IReduxAction<EActionTypes, string> => {
+    return {
+        type: EActionTypes.SERVICE_ERROR_ACKNOWLEDGE,
+        payload: requestId
+    }
+} 

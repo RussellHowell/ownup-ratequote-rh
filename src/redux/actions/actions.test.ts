@@ -1,4 +1,4 @@
-import { onRateQuoteRequest, EActionTypes, onRateQuoteRequestSuccess, onRateQuoteRequestFailure } from './actions';
+import { onRateQuoteRequest, EActionTypes, onRateQuoteRequestSuccess, onRateQuoteRequestFailure, onServiceErrorAcknowledge } from './actions';
 import { EPropertyType, EOccupancyType } from '../../common/enum/index';
 import { IRateQuoteServiceQuery, IRateQuoteServiceResponse } from '../../rate-quote/interface/index';
 import { IReduxAction } from '../../common/interface/index';
@@ -73,3 +73,10 @@ it( 'onRateQuoteRequestFailure returns a properly formatted action', () => {
         }
     });
 } );
+
+it( 'onServiceErrorAcknowledge returns correctly formatted action', () => {
+    expect( onServiceErrorAcknowledge( 'foo' ) ).toMatchObject( {
+        type: EActionTypes.SERVICE_ERROR_ACKNOWLEDGE,
+        payload: 'foo'
+    } )
+})
