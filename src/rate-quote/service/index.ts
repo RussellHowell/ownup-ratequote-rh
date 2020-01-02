@@ -6,7 +6,7 @@ import { IRateQuoteServiceQuery, IRateQuoteServiceResponse } from "../interface"
  * @description Ownup rate quote related service queries 
  */
 
-const rateQuoteRequest = ( query: IRateQuoteServiceQuery ): Promise<IRateQuoteServiceResponse> => {
+export const fetchRateQuotes = ( query: IRateQuoteServiceQuery ): Promise<IRateQuoteServiceResponse> => {
     return new Promise( ( resolve, reject ) => {
         fetch(process.env.OWNUP_SERVICE_URL as string, {
             method: 'GET',
