@@ -34,7 +34,7 @@ const testResponse: IRateQuoteServiceResponse = {
 
 it( 'onRateQuoteRequest returns correctly formatted action with id specified', () => {
     expect( onRateQuoteRequest( testQuery, 'test' ) ).toMatchObject( {
-        action: EActionTypes.RATE_QUOTE_REQUEST,
+        type: EActionTypes.RATE_QUOTE_REQUEST,
         payload: {
             id: 'test',
             content: testQuery
@@ -46,7 +46,7 @@ it( 'onRateQuoteRequest returns correctly formatted response when a payloadId is
     //create action without specifying id
     const action: IReduxAction<EActionTypes, {id: string, content: IRateQuoteServiceQuery}> = onRateQuoteRequest( testQuery );
     expect( action.payload.content ).toMatchObject( testQuery );
-    expect( action.action ).toMatch( EActionTypes.RATE_QUOTE_REQUEST );
+    expect( action.type ).toMatch( EActionTypes.RATE_QUOTE_REQUEST );
     expect( action.payload ).toHaveProperty( 'id' );
     expect( typeof(action.payload.id) ).toMatch( 'string' );
 });
@@ -56,7 +56,7 @@ it( 'onRateQuoteRequestSuccess returns correctly formatted action', () => {
         id: 'test',
         content: testResponse
     } );
-    expect( action.action ).toMatch( EActionTypes.RATE_QUOTE_REQUEST_SUCCESS );
+    expect( action.type ).toMatch( EActionTypes.RATE_QUOTE_REQUEST_SUCCESS );
     expect( action.payload ).toMatchObject( {
         id: 'test',
         content: testResponse
@@ -66,7 +66,7 @@ it( 'onRateQuoteRequestSuccess returns correctly formatted action', () => {
 it( 'onRateQuoteRequestFailure returns a properly formatted action', () => {
     const testErrors: Array<string> = [ 'err1', 'err2' ];
     expect( onRateQuoteRequestFailure( { id: 'test', errorMessages: testErrors } ) ).toMatchObject({
-        action: EActionTypes.RATE_QUOTE_REQUEST_FAILURE,
+        type: EActionTypes.RATE_QUOTE_REQUEST_FAILURE,
         payload: {
             id: 'test',
             content: testErrors
