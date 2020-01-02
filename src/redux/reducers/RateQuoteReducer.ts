@@ -1,6 +1,6 @@
 import { IRateQuoteServiceResponse } from "../../rate-quote";
 import { IReduxAction } from '../../common';
-import { EActionTypes } from "../actions/actions";
+import { EActionTypes } from "../actions";
 
 /**
  * @author Russell Howell
