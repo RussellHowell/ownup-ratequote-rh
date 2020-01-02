@@ -1,3 +1,5 @@
+import { EServiceRequestProgress } from "../enum";
+
 export interface IBaseProps { 
     /** classname that will appended to root element of component */
     style?: React.CSSProperties;
@@ -24,4 +26,15 @@ export interface IDataTableProps {
 export interface IReduxAction<T, P> {
     type: T,
     payload: P
+}
+
+/** Interface used to keep track of service request related information */
+export interface IServiceRequestMetaData<T> {
+    id: string,
+    queryData: T
+    requestType: string,
+    errors: Array<string>,
+    /** whether the error has been seen/acknowledged by user  */
+    errorsAcknowledged: boolean
+    requestProgress: EServiceRequestProgress
 }

@@ -18,3 +18,10 @@ export enum EOccupancyType {
     SECONDARY = "Secondary",
     INVESTMENT = "Investment"
 }
+
+export enum EServiceRequestProgress { 
+    NOT_STARTED = "NOT_STARTED",
+    IN_PROGRESS = "IN_PROGRESS",
+    SUCCESSFUL = "SUCCESSFUL",
+    FAILURE = "FAILURE"
+}
