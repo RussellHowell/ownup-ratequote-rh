@@ -20,3 +20,8 @@ export interface IDataTableProps {
      */
     rowData: Array<object>
 }
+
+export interface IReduxAction<T, P> {
+    type: T,
+    payload: P
+}
