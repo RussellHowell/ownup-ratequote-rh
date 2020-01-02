@@ -11,7 +11,7 @@ import { EActionTypes } from "../actions/actions";
  export interface IRateQuoteReducer extends IRateQuoteServiceResponse {
  }  
 
-//extend IReduxActions second template to support more payload types
+/* helper interface: collates all possible action types & action content */
  interface IRateQuoteReducerAction extends IReduxAction<EActionTypes, { id: string, content: IRateQuoteServiceResponse }> {
  }
 
