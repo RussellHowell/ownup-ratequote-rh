@@ -98,7 +98,7 @@ it( `adds new entry to requests array with new request after ${EActionTypes.RATE
 it( `sets errorAcknowleged key to "true" for correct request object n ${EActionTypes.SERVICE_ERROR_ACKNOWLEDGE} action`, () => {
     const newState: IServiceReducer = serviceReducer( populatedState, onServiceErrorAcknowledge( '2' ) );
     expect( newState.requests.length ).toBe( testRateQuoteArray.length );
-    newState.requests.map( requestData => requestData.id === '2' ? expect( requestData.errorsAcknowledged ).toBe( true ) : undefined );
+    newState.requests.map( requestData => requestData.id === '2' ? expect( requestData.errorsAcknowledged ).toBe( true ) : expect( requestData.errorsAcknowledged ).toBe( false ) );
 } )
 
 it( `correctly updates status of corresponding request after ${EActionTypes.RATE_QUOTE_REQUEST_SUCCESS} action`, () => {
