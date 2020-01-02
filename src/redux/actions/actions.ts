@@ -15,7 +15,7 @@ const shortid = require( 'shortid' );
      RATE_QUOTE_REQUEST = "RATE_QUOTE_REQUEST",
      RATE_QUOTE_REQUEST_SUCCESS = "RATE_QUOTE_REQUEST_SUCCESS",
      RATE_QUOTE_REQUEST_FAILURE = "RATE_QUOTE_REQUEST_FAILURE",
-     RATE_QUOTE_RESULTS_UPDATE_ALL = "RATE_QUOTE_RESULTS_UPDATE",
+     RATE_QUOTE_RESULTS_UPDATE_ALL = "RATE_QUOTE_RESULTS_UPDATE_ALL",
      RATE_QUOTE_RESULTS_ADD_SINGLE = "RATE_QUOTE_RESULTS_ADD_SINGLE",
      RATE_QUOTE_RESULTS_UPDATE_SINGLE = "RATE_QUOTE_RESULTS_UPDATE_SINGLE",
      RATE_QUOTE_RESULTS_REMOVE_SINGLE = "RATE_QUOTE_RESULTS_REMOVE_SINGLE"
@@ -33,7 +33,7 @@ const shortid = require( 'shortid' );
 export const onRateQuoteRequest = ( query: IRateQuoteServiceQuery, payloadId?: string  ): 
     IReduxAction<EActionTypes, {id:string, content: IRateQuoteServiceQuery}>  => {
         return {
-            action: EActionTypes.RATE_QUOTE_REQUEST,
+            type: EActionTypes.RATE_QUOTE_REQUEST,
             payload: {
                 id: _.isUndefined( payloadId ) ? shortid.generate() : payloadId,
                 content: query
@@ -45,7 +45,7 @@ export const onRateQuoteRequest = ( query: IRateQuoteServiceQuery, payloadId?: s
 export const onRateQuoteRequestSuccess = ( result: {id: string, content: IRateQuoteServiceResponse} ): 
     IReduxAction<EActionTypes, {id: string, content: IRateQuoteServiceResponse}> => {
         return {
-            action: EActionTypes.RATE_QUOTE_REQUEST_SUCCESS,
+            type: EActionTypes.RATE_QUOTE_REQUEST_SUCCESS,
             payload: result
         }
 } 
@@ -54,7 +54,7 @@ export const onRateQuoteRequestSuccess = ( result: {id: string, content: IRateQu
 export const onRateQuoteRequestFailure = ( result: {id: string, errorMessages: Array<string>}): 
     IReduxAction<EActionTypes,{id: string, content: Array<string>}> => {
         return { 
-            action: EActionTypes.RATE_QUOTE_REQUEST_FAILURE,
+            type: EActionTypes.RATE_QUOTE_REQUEST_FAILURE,
             payload: {
                 id: result.id,
                 content: result.errorMessages
