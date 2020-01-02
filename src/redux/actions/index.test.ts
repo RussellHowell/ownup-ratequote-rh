@@ -1,7 +1,7 @@
-import { onRateQuoteRequest, EActionTypes, onRateQuoteRequestSuccess, onRateQuoteRequestFailure, onServiceErrorAcknowledge } from './actions';
-import { EPropertyType, EOccupancyType } from '../../common/enum/index';
-import { IRateQuoteServiceQuery, IRateQuoteServiceResponse } from '../../rate-quote/interface/index';
-import { IReduxAction } from '../../common/interface/index';
+import { onRateQuoteRequest, EActionTypes, onRateQuoteRequestSuccess, onRateQuoteRequestFailure, onServiceErrorAcknowledge } from '.';
+import { EPropertyType, EOccupancyType } from '../../common';
+import { IRateQuoteServiceQuery, IRateQuoteServiceResponse } from '../../rate-quote';
+import { IReduxAction } from '../../common';
 
 
 const testQuery: IRateQuoteServiceQuery = { 

@@ -1,6 +1,6 @@
 import { IServiceRequestMetaData, IReduxAction, EServiceRequestProgress } from "../../common";
 import { IRateQuoteServiceQuery, IRateQuoteServiceResponse } from '../../rate-quote';
-import { EActionTypes } from '../actions/actions';
+import { EActionTypes } from '../actions';
 
 /** 
  * @author Russell Howell

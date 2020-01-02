@@ -1,5 +1,5 @@
 import { takeLatest } from 'redux-saga/effects';
-import { EActionTypes } from '../actions/actions';
+import { EActionTypes } from '../actions';
 import { requestRateQuotes } from './requestRateQuotes.saga';
 
 /** 

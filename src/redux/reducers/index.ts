@@ -5,6 +5,8 @@ export interface IRootReducer {
     rateQuoteReducer: IRateQuoteReducer
 }
 
-export default combineReducers({
+const rootReducer = combineReducers({
     rateQuoteReducer
 });
+
+export default rootReducer;

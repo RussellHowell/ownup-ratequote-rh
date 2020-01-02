@@ -1,5 +1,5 @@
 import { IRateQuoteReducer, rateQuoteReducer,  } from './RateQuoteReducer';
-import { EActionTypes } from '../actions/actions';
+import { EActionTypes } from '../actions';
 import { IRateQuote, IRateQuoteServiceQuery } from '../../rate-quote';
 import { EPropertyType, EOccupancyType } from '../../common';
 

@@ -1,8 +1,8 @@
 import { IRateQuote, IRateQuoteServiceQuery } from '../../rate-quote';
 import { EPropertyType, EOccupancyType, EServiceRequestProgress } from '../../common';
 import { IServiceReducer, serviceReducer } from './ServiceReducer';
-import { EActionTypes, onServiceErrorAcknowledge, onRateQuoteRequestSuccess, onRateQuoteRequestFailure } from '../actions/actions';
-import { IServiceRequestMetaData } from '../../common/interface/index';
+import { EActionTypes, onServiceErrorAcknowledge, onRateQuoteRequestSuccess, onRateQuoteRequestFailure } from '../actions';
+import { IServiceRequestMetaData } from '../../common';
 
 const initState: IServiceReducer = {
     requests: []
