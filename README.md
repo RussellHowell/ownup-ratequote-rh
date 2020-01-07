@@ -1,44 +1,49 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Running Project
 
-In the project directory, you can run:
+Navigate into the project directory, run 
 
-### `yarn start`
+#### `$ yarn install` or `$ npm install` 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Set up .env file
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+You'll need a .env file to provide the service url endpoint and authentication token, add them following this format:
 
-### `yarn test`
+#### `REACT_APP_SERVICE_HOST=[hostname].com`
+#### `REACT_APP_SERVICE_URL=https://[hostname].com/[service-path]`
+#### `REACT_APP_AUTH_TOKEN=[api key]`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Running and viewing UI 
 
-### `yarn build`
+Then open two terminals
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In the first terminal run 
+#### `$ node proxy.js` (make sure nothing is running on port 8011)
+This proxy is required to circumvent CORS issues
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+In the second terminal run 
+#### `$ yarn run start` or `$ npm run start`
+Navigate to localhost:3000
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### To run the test suite run `$ yarn run test`
 
-### `yarn eject`
+## Additional Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### @blueprintjs
+I've been utilizing this component library for almost two years now and I quite like it, I felt that it would make the form elements a tad bit more aesthetically pleasing
+### query-string
+I feel like manually creating the url query string is a bit messy 
+### lodash 
+I like the utility and syntax of this library, use mainly for undefined/empty checks but also use it with <SimpleDataTable/> to dynamically get elements from each row's object
+### react-grid-system
+I like the simple syntax provided by this library to generate a flexbox grid, rather than manually writing the flexbox css
+### redux-saga 
+I have been using this redux middleware for the past two years to make any side effects/service calls in my applications, again I like the syntax and I feel like it makes handling promises a bit easier and human readable 
+### short-id 
+used to generate unique ids wherever needed in the application
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Additional Notes
+I decided to quickly wrap things up therefore the actual visual side of the application is a bit incomplete, there are also other features like displaying service errors that I wanted to add and make more robust, as well as fixing some of the tests that I have written & adding more tests for the components under <RateQuoteApp />. However I tried my best when designing and implementing the "plumbing" of the application to imagine that it could possibly grow into a much larger app and thusly I put much thought and consideration into the project file setup, naming conventions etc. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
