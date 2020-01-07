@@ -58,13 +58,11 @@ export const RateQuoteForm: React.FunctionComponent<IRateQuoteFormProps> = (prop
           </Label>
         </Col>
       </Row>
-      <Row>
         <Button 
           text="Get Quote"
           intent={ Intent.PRIMARY }
           onClick={ props.onFormSubmit }
         />
-      </Row>
     </Container>
   );
 };
