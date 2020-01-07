@@ -6,6 +6,8 @@ import { IRateQuoteServiceQuery, IRateQuote } from './interface';
 import { EOccupancyType, EPropertyType } from '../common/enum/index';
 import { RateQuoteForm } from './components';
 import SimpleDataTable from '../common/components/SimpleDataTable/SimpleDataTable';
+import { Divider, NonIdealState, IconName } from '@blueprintjs/core';
+import * as _ from 'lodash';
 
 interface IRateQuoteAppProps {
     rateQuotes: Array<IRateQuote>
@@ -27,18 +29,31 @@ const RateQuoteApp: React.FunctionComponent<IRateQuoteAppProps> = (props) => {
             onFormValuesChange={ ( formValues: IRateQuoteServiceQuery ) => updateFormValues( formValues ) }
             onFormSubmit={ () => props.onRateQuoteFormSubmit( formValues ) }
         />
-        
-        <SimpleDataTable 
-            rowData={ props.rateQuotes }
-            columns={ [
-                { header: "Lender", path: ["lenderName"] },
-                { header: "Loan Type", path: ["loanType"] },
-                { header: "Interest Rate", path: ["interestRate"] },
-                { header: "Closing Costs", path: ["closingCosts"] },
-                { header: "Monthly Payment", path: ["monthlyPayment"] },
-                { header: "APR", path: ["apr"] }
-            ] }
-        />
+        <br/>
+        <Divider /> 
+        <br/>
+        {
+            _.isEmpty( props.rateQuotes ) ? (
+                <NonIdealState 
+                    icon={ "home" }
+                    title="No Data"
+                    description="Retrieve rate quotes using the form above"
+                />
+            ) : (
+            <SimpleDataTable 
+                style={{ width: "100vw" }}
+                rowData={ props.rateQuotes }
+                columns={ [
+                    { header: "Lender", path: ["lenderName"] },
+                    { header: "Loan Type", path: ["loanType"] },
+                    { header: "Interest Rate", path: ["interestRate"] },
+                    { header: "Closing Costs", path: ["closingCosts"] },
+                    { header: "Monthly Payment", path: ["monthlyPayment"] },
+                    { header: "APR", path: ["apr"] }
+                ] }
+            />
+            )
+        }
     </div>
     );
 };
