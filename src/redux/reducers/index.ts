@@ -1,12 +1,15 @@
 import { combineReducers } from 'redux'
 import { rateQuoteReducer, IRateQuoteReducer } from './RateQuoteReducer';
+import { serviceReducer, IServiceReducer } from './ServiceReducer';
 
 export interface IRootReducer {
-    rateQuoteReducer: IRateQuoteReducer
+    rateQuoteReducer: IRateQuoteReducer,
+    serviceReducer: IServiceReducer
 }
 
 const rootReducer = combineReducers({
-    rateQuoteReducer
+    rateQuoteReducer,
+    serviceReducer
 });
 
 export default rootReducer;
