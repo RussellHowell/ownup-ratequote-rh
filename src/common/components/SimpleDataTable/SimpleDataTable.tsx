@@ -14,6 +14,9 @@ export interface ISimpleDataTableProps extends IDataTableProps, IBaseProps {
 
 /** Table component that renders an HTML table based on a passed array of column models and row data */
 const SimpleDataTable: React.FC<ISimpleDataTableProps> = (props, context) => {
+  const getRowStyle = ( rowIndex: number ): React.CSSProperties => {
+    return { height: '2em', backgroundColor: rowIndex%2 === 0 ? '#f0f0f0' : '#FFFFF' }
+  } 
     return (
         <table className={ props.className } style={ props.style }>
             <thead>
@@ -23,7 +26,7 @@ const SimpleDataTable: React.FC<ISimpleDataTableProps> = (props, context) => {
             </thead>
             <tbody>
                 { props.rowData.map( ( row, rowIndex ) => ( 
-                <tr key={ 'row-'+rowIndex }> 
+                <tr key={ 'row-'+rowIndex } style={ getRowStyle( rowIndex ) } > 
                   {
                     props.columns.map( ( columnModel, columnIndex ) => ( 
                     <td key={ `${rowIndex}-${columnIndex}`}> 
