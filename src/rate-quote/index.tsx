@@ -22,6 +22,18 @@ const RateQuoteApp: React.FunctionComponent<IRateQuoteAppProps> = (props) => {
         occupancy: EOccupancyType.PRIMARY
     } as IRateQuoteServiceQuery )
 
+
+    /** helper function to make rate quote data more human readable */
+    const formatRateQuote = ( rateQuote: IRateQuote )  => {
+        const { interestRate, monthlyPayment, apr, closingCosts } = rateQuote;
+        return {
+            ...rateQuote,
+            closingCosts: '$' + closingCosts,
+            interestRate: interestRate + '%',
+            monthlyPayment: '$' + monthlyPayment.toPrecision(3),
+            apr: apr.toPrecision(3) + '%'
+        }
+    } 
     return ( 
     <div>
         <RateQuoteForm 
@@ -42,7 +54,7 @@ const RateQuoteApp: React.FunctionComponent<IRateQuoteAppProps> = (props) => {
             ) : (
             <SimpleDataTable 
                 style={{ width: "100vw" }}
-                rowData={ props.rateQuotes }
+                rowData={ props.rateQuotes.map( rateQuote => { return formatRateQuote( rateQuote ) } )  }
                 columns={ [
                     { header: "Lender", path: ["lenderName"] },
                     { header: "Loan Type", path: ["loanType"] },
