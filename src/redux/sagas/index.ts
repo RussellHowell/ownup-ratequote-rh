@@ -11,5 +11,5 @@ import { requestRateQuotes } from './requestRateQuotes.saga';
 
  /** Root saga that should be called to set up application at runtime */
  export default function* rootSaga(){
-    takeLatest( EActionTypes.RATE_QUOTE_REQUEST, requestRateQuotes );
+    yield takeLatest( EActionTypes.RATE_QUOTE_REQUEST, requestRateQuotes );
  }      
