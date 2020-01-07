@@ -12,7 +12,7 @@ You'll need a .env file to provide the service url endpoint and authentication t
 
 #### `REACT_APP_SERVICE_HOST=[hostname].com`
 #### `REACT_APP_SERVICE_URL=https://[hostname].com/[service-path]`
-#### `REACT_APP_AUTH_TOKEN=[api key`
+#### `REACT_APP_AUTH_TOKEN=[api key]`
 
 ### Running and viewing UI 
 
@@ -23,7 +23,7 @@ In the first terminal run
 This proxy is required to circumvent CORS issues
 
 In the second terminal run 
-#### `$ yarn run start` or `$npm run start`
+#### `$ yarn run start` or `$ npm run start`
 Navigate to localhost:3000
 
 ### To run the test suite run `$ yarn run test`
