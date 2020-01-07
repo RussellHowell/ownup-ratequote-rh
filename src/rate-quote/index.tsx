@@ -2,15 +2,15 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { IRootReducer, onRateQuoteRequest } from '../redux';
 import { Dispatch } from 'redux';
-import { IRateQuoteServiceQuery } from './interface';
+import { IRateQuoteServiceQuery, IRateQuote } from './interface';
 import { EOccupancyType, EPropertyType } from '../common/enum/index';
 import { RateQuoteForm } from './components';
+import SimpleDataTable from '../common/components/SimpleDataTable/SimpleDataTable';
 
 interface IRateQuoteAppProps {
+    rateQuotes: Array<IRateQuote>
     onRateQuoteFormSubmit: ( formValue: IRateQuoteServiceQuery ) => void
 }
-
-
 
 const RateQuoteApp: React.FunctionComponent<IRateQuoteAppProps> = (props) => {
     const [ formValues, updateFormValues ] = React.useState( {
@@ -27,12 +27,26 @@ const RateQuoteApp: React.FunctionComponent<IRateQuoteAppProps> = (props) => {
             onFormValuesChange={ ( formValues: IRateQuoteServiceQuery ) => updateFormValues( formValues ) }
             onFormSubmit={ () => props.onRateQuoteFormSubmit( formValues ) }
         />
+        
+        <SimpleDataTable 
+            rowData={ props.rateQuotes }
+            columns={ [
+                { header: "Lender", path: ["lenderName"] },
+                { header: "Loan Type", path: ["loanType"] },
+                { header: "Interest Rate", path: ["interestRate"] },
+                { header: "Closing Costs", path: ["closingCosts"] },
+                { header: "Monthly Payment", path: ["monthlyPayment"] },
+                { header: "APR", path: ["apr"] }
+            ] }
+        />
     </div>
     );
 };
 
 const mapStateToProps = ( state: IRootReducer ) => {
-    return {}
+    return {
+        rateQuotes: state.rateQuoteReducer.rateQuotes
+    }
 }
 
 const mapDispatchToProps = ( dispatch: Dispatch ) => {
